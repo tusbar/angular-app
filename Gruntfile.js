@@ -22,9 +22,16 @@ module.exports = function (grunt) {
                     livereload: true
                 }
             },
-            js: {
+            scripts: {
                 files: ['<%= c.app %>/scripts/**/*.js'],
                 tasks: ['browserify:app'],
+                options: {
+                    livereload: true
+                }
+            },
+            styles: {
+                files: ['<%= c.app %>/styles/**/*.less'],
+                tasks: ['less:app'],
                 options: {
                     livereload: true
                 }
@@ -83,6 +90,18 @@ module.exports = function (grunt) {
 
         // ## //
 
+        less: {
+            options: {
+                paths: ['node_modules']
+            },
+            app: {
+                src: '<%= c.app %>/styles/main.less',
+                dest: '<%= c.dist %>/styles/bundle.css'
+            }
+        },
+
+        // ## //
+
         copy: {
             views: {
                 files: [{
@@ -102,12 +121,14 @@ module.exports = function (grunt) {
     grunt.registerTask('livereload', require('tasks/livereload')(grunt));
 
     grunt.registerTask('default', [
+        'build',
         'livereload',
         'watch'
     ]);
 
     grunt.registerTask('build', [
         'browserify:app',
+        'less:app',
         'copy:views'
     ]);
 };

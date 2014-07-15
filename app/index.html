@@ -2,10 +2,14 @@
 <html ng-app="app">
 <head>
   <title>Angular application</title>
+  <link rel="stylesheet" href="/styles/bundle.css">
 </head>
-<body ng-controller="HomeController">
-  <h1>It works!</h1>
-  <p>{{ message }}</p>
+<body>
+  <div class="page-wrapper">
+    <header ng-include src="'./views/header.html'"></header>
+    <div class="content-wrapper" ng-view></div>
+  </div>
+  <footer ng-include src="'./views/footer.html'"></footer>
   <script src="/scripts/bundle.js"></script>
 </body>
 </html>
