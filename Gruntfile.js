@@ -95,7 +95,7 @@ module.exports = function (grunt) {
                 paths: ['node_modules']
             },
             app: {
-                src: '<%= c.app %>/styles/main.less',
+                src: '<%= c.app %>/styles/index.less',
                 dest: '<%= c.dist %>/styles/bundle.css'
             }
         },
